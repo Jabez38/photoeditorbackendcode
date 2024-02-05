@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const Image = require("../model/uploads");
+const Image = require("../model/Wedding");
 const multer = require("multer");
 const path = require("path");
-
 
 /**
  * @method - POST
@@ -11,20 +10,16 @@ const path = require("path");
  * @param - /user/me
  */
 
-
 const storage = multer.diskStorage({
 
     filename: (req, file, cb) => {
         cb(null, Date.now() + path?.extname(file?.originalname)); // Rename the file with timestamp and original extension
     }
-
 });
 
 const upload = multer({ storage: storage });
 
-
-router.post("/imagess", upload.single("image"), async (req, res) => {
-
+router.post("/wedding", upload.single("image"), async (req, res) => {
 
     try {
         const { title, shortdescription, longdescription } = req.body;
@@ -39,12 +34,7 @@ router.post("/imagess", upload.single("image"), async (req, res) => {
             path
         });
 
-
-
-
-
         await newImage.save();
-
         res.status(201).json({ message: "Image uploaded successfully" });
     }
 
@@ -54,6 +44,8 @@ router.post("/imagess", upload.single("image"), async (req, res) => {
     }
 
 });
+
+
 
 
 module.exports = router;

@@ -1,16 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const Image = require("../model/uploads");
+const Image = require("../model/breakingnews");
 const multer = require("multer");
 const path = require("path");
-
 
 /**
  * @method - POST
  * @description - Get LoggedIn User
  * @param - /user/me
  */
-
 
 const storage = multer.diskStorage({
 
@@ -22,10 +20,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-
-router.post("/imagess", upload.single("image"), async (req, res) => {
-
-
+router.post("/breakingnews", upload.single("image"), async (req, res) => {
     try {
         const { title, shortdescription, longdescription } = req.body;
 
@@ -40,20 +35,18 @@ router.post("/imagess", upload.single("image"), async (req, res) => {
         });
 
 
-
-
-
         await newImage.save();
-
         res.status(201).json({ message: "Image uploaded successfully" });
-    }
+
+       }
 
     catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
-    }
+      }
 
 });
+
 
 
 module.exports = router;

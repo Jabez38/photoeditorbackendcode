@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 
 
-
 module.exports = function (req, res, next) {
 
   const token = req.header("token");
@@ -19,6 +18,3 @@ module.exports = function (req, res, next) {
     res.status(500).send({ message: "Invalid Token" });
   }
 };
-
-
-

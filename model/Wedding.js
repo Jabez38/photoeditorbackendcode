@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 
 
+
 const imageSchema = mongoose.Schema({
 
   title: String,
@@ -18,6 +19,7 @@ const imageSchema = mongoose.Schema({
 
 
 
-module.exports = mongoose.model('Images', imageSchema, "images");
+
+module.exports = mongoose.model('wedding', imageSchema, "wedding");
 
 
